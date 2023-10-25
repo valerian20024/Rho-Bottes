@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import re
 
 #from helperfunctions import _mkColorNamePretty
 import matplotlib.colors as colors
@@ -38,6 +39,23 @@ class RandomCog(commands.Cog):
         e.add_field(name="Hex value", value=colorNbStr)
         
         return await ctx.send(embed=e)
+
+    @commands.command()
+    async def randCard(self, ctx, jokers=False):
+        if jokers:
+            deckSize = 54
+        else:
+            deckSize = 52
+        value = np.random.randint(1, deckSize + 1)
+        if jokers and value > 52:
+            return await ctx.send("Joker \uD83C\uDCBF")
+        else:
+            q, r = divmod(value, 13)
+            color = ("Heart \u2661", "Spade \u2664",
+                     "Diamond \u2662", "Club \u2667")[q]
+            v = str(r) if r <= 10 else ("Jack", "Queen", "King")[r - 11]
+            
+        return await ctx.send("\uD83C\uDCA0 " + v + " of " + color)
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(RandomCog(bot))
