@@ -27,7 +27,7 @@ class RhoBottes(commands.Bot):
         print("Rho Bottes is online.")
 
 def main() -> None:
-    dotenv.load_dotenv()
+    dotenv.load_dotenv('TOKEN.env')
     TOKEN = os.getenv("TOKEN")
     
     if TOKEN is None:
