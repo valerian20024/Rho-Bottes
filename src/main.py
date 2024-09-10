@@ -1,4 +1,5 @@
 import discord
+from discord_token import TOKEN
 from discord.ext import commands
 import os, dotenv
 
@@ -8,11 +9,8 @@ class RhoBottes(commands.Bot):
         ints.members = False
         ints.message_content = True
         ints.presences = False
-        
         desc = "Pythoned Rho Bottes!"
-        
         commPref = "!"
-        
         super().__init__(command_prefix=commPref, 
                          intents=ints,
                          description=desc)
@@ -26,15 +24,12 @@ class RhoBottes(commands.Bot):
     async def on_ready(self) -> None:
         print("Rho Bottes is online.")
 
-def main() -> None:
-    dotenv.load_dotenv('TOKEN.env')
-    TOKEN = os.getenv("TOKEN")
-    
+def main() -> None:    
     if TOKEN is None:
         raise ValueError("TOKEN is not defined.")
 
     rhoBottes = RhoBottes()
-    rhoBottes.run(token=TOKEN)
-        
+    rhoBottes.run(TOKEN)
+
 if __name__=="__main__":
     main()    

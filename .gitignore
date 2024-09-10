@@ -1,3 +1,4 @@
 *.env
+discord_token.py
 *~
 __pycache__/
