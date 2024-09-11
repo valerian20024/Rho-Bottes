@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
-import csv
+import csv, requests
+from datetime import datetime
 
 #from helperfunctions import mkColorNamePretty
 import matplotlib.colors as colors
@@ -69,6 +70,42 @@ class RandomCog(commands.Cog):
             description=chosenColor[0],
             color=discord.Color.from_str(chosenColor[0])
         )
+        return await ctx.send(embed=emb)
+
+    @commands.command()
+    async def apod(self, ctx, day=0, month=0, year=0):
+        if day not in range(1, 31) or month not in range(1, 12) or year not in range(2015, datetime.now().year + 1):
+            now = datetime.now()
+            nowPretty = now.strftime("%d/%m/%y")
+            nowYYMMDD = now.strftime("%y%m%d")
+        else:
+            if month < 10:
+                month = "0" + str(month)
+            if day < 10:
+                day = "0" + str(day)
+            nowPretty = str(day) + "/" + str(month) + "/" + str(year)
+            nowYYMMDD = str(year)[2:] + str(month) + str(day)
+
+        pageURL = 'https://apod.nasa.gov/apod/ap' + nowYYMMDD + '.html'
+
+        r = requests.get(pageURL)
+        htmlCode = r.text
+        imgSubStrStart = htmlCode.find('<a href="image')  # finding image url 
+        imgSubStrEnd = htmlCode.find('"', imgSubStrStart + 13)  # finding next " caracter
+        imageURL = 'https://apod.nasa.gov/apod/' + htmlCode[imgSubStrStart+9 : imgSubStrEnd]  # removes <a href="
+
+        descSubStrStart = htmlCode.find('<center>\n<b>')  # should make a function for this
+        descSubStrEnd = htmlCode.find('</b>', descSubStrStart)
+        desc = htmlCode[descSubStrStart + 13 : descSubStrEnd]
+
+        emb = discord.Embed(
+            title="NASA APOD " + nowPretty,
+            description=desc,
+            color=discord.Color.blurple(),   
+            url=pageURL
+        )
+        emb.set_image(url=imageURL)
+        
         return await ctx.send(embed=emb)
 
 async def setup(bot: commands.Bot) -> None:
