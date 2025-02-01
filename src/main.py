@@ -1,7 +1,7 @@
 import discord
-from discord_token import TOKEN
+#from discord_token import TOKEN
 from discord.ext import commands
-import os, dotenv
+import os
 
 class RhoBottes(commands.Bot):
     def __init__(self) -> None:
@@ -16,20 +16,21 @@ class RhoBottes(commands.Bot):
                          description=desc)
 
     async def setup_hook(self) -> None:
-        await self.load_extension("plugins.random")
         await self.load_extension("plugins.utils")
         await self.load_extension("plugins.helperfunctions")
+        await self.load_extension("plugins.greeting")
+        await self.load_extension("plugins.random")
         await self.tree.sync()
         
     async def on_ready(self) -> None:
         print("Rho Bottes is online.")
 
-def main() -> None:    
-    if TOKEN is None:
-        raise ValueError("TOKEN is not defined.")
+def main():    
+    """if TOKEN is None:
+        raise ValueError("TOKEN is not defined.")"""
 
     rhoBottes = RhoBottes()
-    rhoBottes.run(TOKEN)
+    rhoBottes.run(os.getenv("TOKEN"))
 
 if __name__=="__main__":
-    main()    
+    main()

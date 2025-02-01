@@ -3,7 +3,6 @@ from discord.ext import commands
 import csv, requests
 from datetime import datetime
 
-#from helperfunctions import mkColorNamePretty
 import matplotlib.colors as colors
 import random
 import numpy as np
@@ -11,10 +10,6 @@ import numpy as np
 class RandomCog(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
-
-    @commands.command()
-    async def hello(self, ctx: commands.Context) -> discord.Message:
-        return await ctx.send("Hello")
 
     @commands.command()
     async def rand(self, ctx: commands.Context, min: int, max: int):
@@ -29,7 +24,7 @@ class RandomCog(commands.Cog):
         return colName
 
     @commands.command()
-    async def randColor(self, ctx):
+    async def randColor2(self, ctx):
         colorName, colorNbStr = random.choice(list(colors.get_named_colors_mapping().items()))
 
         colorHex = discord.Color(value=int(colorNbStr[1:], 16))

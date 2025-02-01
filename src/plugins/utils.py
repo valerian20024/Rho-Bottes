@@ -10,4 +10,4 @@ class UtilsCog(commands.Cog):
         return await ctx.send("Commands available are !rand, !randColor, and !hello")        
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(UtilsCog(bot))
+    await bot.add_cog(UtilsCog(bot))  
