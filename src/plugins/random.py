@@ -18,24 +18,6 @@ class RandomCog(commands.Cog):
         res = round(min + (max - min) * np.random.rand(), 3)
         return await ctx.send(f"Result is : {res}")
 
-    def _mkColorNamePretty(colName: str):
-        if ':' in colName:
-            colName = colName.split(":")[1].title()
-        return colName
-
-    @commands.command()
-    async def randColor2(self, ctx):
-        colorName, colorNbStr = random.choice(list(colors.get_named_colors_mapping().items()))
-
-        colorHex = discord.Color(value=int(colorNbStr[1:], 16))
-        colorNamePretty = RandomCog._mkColorNamePretty(colorName)
-
-        e = discord.Embed(title=colorNamePretty, color=colorHex)
-        e.add_field(name="Real name", value=colorName)
-        e.add_field(name="Hex value", value=colorNbStr)
-        
-        return await ctx.send(embed=e)
-
     @commands.command()
     async def randCard(self, ctx, jokers=False):
         if jokers:
@@ -56,7 +38,8 @@ class RandomCog(commands.Cog):
     
     @commands.command()
     async def randColor(self, ctx):
-        with open('../data/colors.csv') as f:
+        # todo: use an environment variable for the path
+        with open('/home/app/data/colors.csv') as f:
             reader = csv.reader(f)
             chosenColor = random.choice(list(reader))
 

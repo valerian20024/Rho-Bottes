@@ -8,7 +8,7 @@ class RhoBottes(commands.Bot):
         ints.members = False
         ints.message_content = True
         ints.presences = False
-        desc = "Pythoned Rho Bottes!"
+        desc = "Rho Bottes Pythoné!"
         commPref = "!"
         super().__init__(command_prefix=commPref, 
                          intents=ints,
@@ -16,7 +16,6 @@ class RhoBottes(commands.Bot):
 
     async def setup_hook(self) -> None:
         await self.load_extension("plugins.utils")
-        await self.load_extension("plugins.helperfunctions")
         await self.load_extension("plugins.greeting")
         await self.load_extension("plugins.random")
         await self.tree.sync()

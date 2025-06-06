@@ -9,7 +9,6 @@ class GreetingCog(commands.Cog):
 
     @commands.command()
     async def hello(self, ctx: commands.Context) -> discord.Message:
-        
         return await ctx.send("Hello")
     
 
