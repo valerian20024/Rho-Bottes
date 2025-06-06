@@ -19,3 +19,15 @@ A review of all the commands the bot currently supports. Hopefully this list is 
 
 ​### NoCategory:
   help: basic help display showing all the available commands.
+
+## How to use it
+Just like any Discord bot, you will need a token from [Discord](https://discord.com/developers/) to be able to use it. You will also need a container solution such as [Docker](https://www.docker.com/).
+Put a `.env` file in the root folder with the `TOKEN` value equal to your token.
+
+Then simply use the following to build the image:
+
+`docker compose build`
+
+And launch the container using:
+
+`docker compose up [-d]` 
