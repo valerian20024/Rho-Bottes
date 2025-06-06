@@ -7,7 +7,7 @@ class UtilsCog(commands.Cog):
     
     @commands.command()
     async def halp(self, ctx: commands.Context):
-        return await ctx.send("Commands available are !rand, !randColor, and !hello")        
+        return await ctx.send("Well I don't know what to do to help you ... at least for now.")        
     
     @commands.command()
     async def nyoto(self, ctx: commands.Context):

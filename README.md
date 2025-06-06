@@ -31,3 +31,7 @@ Then simply use the following to build the image:
 And launch the container using:
 
 `docker compose up [-d]` 
+
+Stop the container using:
+
+`docker compose down [-v]`
