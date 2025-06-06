@@ -1,5 +1,4 @@
 import discord
-#from discord_token import TOKEN
 from discord.ext import commands
 import os
 
@@ -26,9 +25,6 @@ class RhoBottes(commands.Bot):
         print("Rho Bottes is online.")
 
 def main():    
-    """if TOKEN is None:
-        raise ValueError("TOKEN is not defined.")"""
-
     rhoBottes = RhoBottes()
     rhoBottes.run(os.getenv("TOKEN"))
 
