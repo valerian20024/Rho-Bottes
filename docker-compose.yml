@@ -1,0 +1,7 @@
+# minimal docker-compose file for building and running the Discord bot
+services:
+  discord-bot:
+    build: .
+    env_file:
+      - .env
+    restart: unless-stopped
