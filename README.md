@@ -1,6 +1,21 @@
-Discord Bot using `discord.py` librairy. Intended for personal use, but might give inspiration or help others.
+# Rho-Bottes
+Discord bot using [discord.py](https://discordpy.readthedocs.io/en/stable/#). Intended for personal use, but it might give inspiration or help others.
+It's mainly made of simple commands for everyday use and for fun. And it's cute.
 
-Create a file 'discord_token.py' at the same level as 'main.py' and write your token in the form :
-`TOKEN = "tokenWrittenAsAString"`
+## Current capabilities
+A review of all the commands the bot currently supports. Hopefully this list is up to date.
 
-Be in src/ for launching main.py. Paths to files are relatives, must get this to work better.
+### Greeting:
+  hello: simply return a joyful hello message!
+
+### Random:
+  apod: display the current [Astronomy Picture of the Day](https://apod.nasa.gov/apod/archivepix.html) in an embed.
+  rand: picks a float number between a minimum and a maximum.
+  randCard: picks a card from a traditional 52 [+ 2 if you want jokers] cards game.
+  randColor: picks a random color and displays it nicely in an embed.
+
+### Utils:
+  halp: displays a custom help message.
+
+​### NoCategory:
+  help: basic help display showing all the available commands.
