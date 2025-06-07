@@ -6,19 +6,19 @@ It's mainly made of simple commands for everyday use and for fun. And it's cute.
 A review of all the commands the bot currently supports. Hopefully this list is up to date.
 
 ### Greeting:
-  hello: simply return a joyful hello message!
+  - hello: simply return a joyful hello message!
 
 ### Random:
-  apod: display the current [Astronomy Picture of the Day](https://apod.nasa.gov/apod/archivepix.html) in an embed.
-  rand: picks a float number between a minimum and a maximum.
-  randCard: picks a card from a traditional 52 [+ 2 if you want jokers] cards game.
-  randColor: picks a random color and displays it nicely in an embed.
+  - apod: display the current [Astronomy Picture of the Day](https://apod.nasa.gov/apod/archivepix.html) in an embed.
+  - rand: picks a float number between a minimum and a maximum.
+  - randCard: picks a card from a traditional 52 [+ 2 if you want jokers] cards game.
+  - randColor: picks a random color and displays it nicely in an embed.
 
 ### Utils:
-  halp: displays a custom help message.
+  - halp: displays a custom help message.
 
 ​### NoCategory:
-  help: basic help display showing all the available commands.
+  - help: basic help display showing all the available commands.
 
 ## How to use it
 Just like any Discord bot, you will need a token from [Discord](https://discord.com/developers/) to be able to use it. You will also need a container solution such as [Docker](https://www.docker.com/).
