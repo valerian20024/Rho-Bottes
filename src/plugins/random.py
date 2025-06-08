@@ -3,6 +3,8 @@ from discord.ext import commands
 import csv, requests
 from datetime import datetime
 
+import re
+import os
 import matplotlib.colors as colors
 import random
 import numpy as np
@@ -85,6 +87,42 @@ class RandomCog(commands.Cog):
         emb.set_image(url=imageURL)
         
         return await ctx.send(embed=emb)
+    
+    @commands.command()
+    async def chat(self, ctx):
+        try:
+            API_KEY = os.getenv('OPEN_WEBUI_API_KEY')
+            API_URL = "http://open-webui:8080/api/chat/completions"
+            PROMPT = "Can you tell me a joke?"
+
+            headers = {
+                'Authorization': f'Bearer {API_KEY}',
+                'Content-Type': 'application/json'
+            }
+            data = {
+                "model": "qwen3:latest",
+                "messages": [
+                    {
+                    "role": "user",
+                    "content": PROMPT
+                    }
+                ]
+            }
+
+            response = requests.post(API_URL, headers=headers, json=data)
+            print(f"Status Code: {response.status_code}")
+            print(f"Response Body: {response.text}")
+
+            print(response.json())
+            answer = response.json()['choices'][0]['message']['content']
+            reply = re.sub(r'<think>.*?</think>\n*', '', answer, flags=re.DOTALL)
+
+            return await ctx.send(reply)
+        except Exception as e:
+            log = "Impossible to connect to the API"
+            print(log)
+            
+            return await ctx.send(log)
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(RandomCog(bot))
