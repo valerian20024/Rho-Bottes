@@ -91,7 +91,7 @@ class RandomCog(commands.Cog):
     @commands.command()
     async def chat(self, ctx):
         try:
-            API_KEY = os.getenv('OPEN_WEBUI_API_KEY')
+            API_KEY = os.getenv("OPEN_WEBUI_API_KEY")
             API_URL = "http://open-webui:8080/api/chat/completions"
             PROMPT = "Can you tell me a joke?"
 
