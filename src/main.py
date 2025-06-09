@@ -18,6 +18,7 @@ class RhoBottes(commands.Bot):
         await self.load_extension("plugins.utils")
         await self.load_extension("plugins.greeting")
         await self.load_extension("plugins.random")
+        await self.load_extension("plugins.api")
         await self.tree.sync()
         
     async def on_ready(self) -> None:
