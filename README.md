@@ -60,6 +60,6 @@ Stopping / restarting it:
 
 ## TODO
 
-- Deployment: for now it's forced to use SIGKILL to stop it for some reason. Will investigate on that and on the start/run mecanisms.
+- Deployment: for now it's forced to use SIGKILL to stop it for some reason. Will investigate on that and on the start/run mecanisms. Will also need to refine the podman commands to have a read name for the container and better understand the flow. 
 
 
