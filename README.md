@@ -21,6 +21,9 @@ A review of all the commands the bot currently supports. Hopefully this list is 
   - help: basic help display showing all the available commands.
 
 ## How to use it
+
+### Development
+
 Just like any Discord bot, you will need a token from [Discord](https://discord.com/developers/) to be able to use it. You will also need a container solution such as [Docker](https://www.docker.com/).
 Put a `.env` file in the root folder with the `TOKEN` value equal to your token.
 
@@ -35,3 +38,28 @@ And launch the container using:
 Stop the container using:
 
 `docker compose down [-v]`
+
+### Deployment on Podman
+Using Podman 4.3 for deployment. 
+
+Building the image from source (run in root folder): 
+
+`podman build -t <name-of-image> -f Dockerfile .`
+
+Running it as a container (not a pod):
+
+`podman run -d --env-file <path-to-.env> rho-bottes:latest`
+
+which should give you a container-ID. Otherwise, you can do the following to list all containers.
+
+`podman container list --all`
+
+Stopping / restarting it:
+
+`podman container [stop|start] <container-ID|name>`
+
+## TODO
+
+- Deployment: for now it's forced to use SIGKILL to stop it for some reason. Will investigate on that and on the start/run mecanisms.
+
+
