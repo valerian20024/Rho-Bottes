@@ -13,9 +13,13 @@ class GreetingCog(commands.Cog):
     
     @commands.hybrid_command()
     async def test(self, ctx):
-        async with ctx.channel.typing():
-            await asyncio.sleep(25)
-        await ctx.send("Operation completed !")
+        try:
+            async with ctx.channel.typing():
+                await asyncio.sleep(5)
+            await ctx.send("Operation completed !")
+        except Exception as e:
+            await ctx.send(f"An error occurred: {str(e)}")
+            print(f"Error: {e}")
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(GreetingCog(bot), guild=discord.Object(id=os.getenv("GUILD_ID")))

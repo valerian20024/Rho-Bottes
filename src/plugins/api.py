@@ -49,32 +49,32 @@ class ApiCog(commands.Cog):
     
     @commands.command()
     async def chat(self, ctx, query="Hello"):
-        async with ctx.channel.typing():
+        
             try:
-                API_KEY = os.getenv("OPEN_WEBUI_API_KEY")
-                API_URL = os.getenv("OPEN_WEBUI_URL")
+                async with ctx.channel.typing():
+                    API_KEY = os.getenv("OPEN_WEBUI_API_KEY")
+                    API_URL = os.getenv("OPEN_WEBUI_URL")
 
-                headers = {
-                    'Authorization': f'Bearer {API_KEY}',
-                    'Content-Type': 'application/json'
-                }
-                data = {
-                    "model": os.getenv("OPEN_WEBUI_MODEL"),
-                    "messages": [
-                        {
-                        "role": "user",
-                        "content": query
-                        }
-                    ]
-                }
+                    headers = {
+                        'Authorization': f'Bearer {API_KEY}',
+                        'Content-Type': 'application/json'
+                    }
+                    data = {
+                        "model": os.getenv("OPEN_WEBUI_MODEL"),
+                        "messages": [
+                            {
+                            "role": "user",
+                            "content": query
+                            }
+                        ]
+                    }
 
-                response = requests.post(API_URL, headers=headers, json=data)
-                print(f"Response status code: {response.status_code}")
+                    response = requests.post(API_URL, headers=headers, json=data)
+                    print(f"Response status code: {response.status_code}")
 
-                answer = response.json()['choices'][0]['message']['content']
-                # todo: remove only if there is a <think></think>. Look inside the answer to get the model caracteristics
-                reply = re.sub(r'<think>.*?</think>\n*', '', answer, flags=re.DOTALL)
-
+                    answer = response.json()['choices'][0]['message']['content']
+                    # todo: remove only if there is a <think></think>. Look inside the answer to get the model caracteristics
+                    reply = re.sub(r'<think>.*?</think>\n*', '', answer, flags=re.DOTALL)
                 await ctx.send(reply)
             except Exception as e:
                 log = "Impossible to connect to the API: " + str(e) 
