@@ -9,7 +9,7 @@ class RhoBottes(commands.Bot):
         ints.message_content = True
         ints.presences = False
         desc = "Rho Bottes Pythoné!"
-        commPref = "!"
+        commPref = "$"
         super().__init__(command_prefix=commPref, 
                          intents=ints,
                          description=desc)
@@ -19,14 +19,23 @@ class RhoBottes(commands.Bot):
         await self.load_extension("plugins.greeting")
         await self.load_extension("plugins.random")
         await self.load_extension("plugins.api")
-        await self.tree.sync()
+        
+        await self.tree.sync(guild=discord.Object(id=os.getenv("GUILD_ID")))
         
     async def on_ready(self) -> None:
         print("Rho Bottes is online.")
 
+bot = RhoBottes()
+
+@bot.tree.command(guild=discord.Object(id=os.getenv("GUILD_ID")), name="slashy")
+async def test_command(interaction: discord.Interaction):
+    author = interaction.user
+    await interaction.response.send_message(author.name)
+
+
 def main():    
-    rhoBottes = RhoBottes()
-    rhoBottes.run(os.getenv("TOKEN"))
+    # rhoBottes = RhoBottes()
+    bot.run(os.getenv("TOKEN"))
 
 if __name__=="__main__":
     main()
