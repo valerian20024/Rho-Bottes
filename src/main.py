@@ -9,10 +9,13 @@ class RhoBottes(commands.Bot):
         ints.message_content = True
         ints.presences = False
         desc = "Rho Bottes Pythoné!"
-        commPref = "$"
-        super().__init__(command_prefix=commPref, 
-                         intents=ints,
-                         description=desc)
+        commands_prefix = "$"
+        
+        super().__init__(
+            command_prefix=commands_prefix, 
+            intents=ints,
+            description=desc
+        )
 
     async def setup_hook(self) -> None:
         await self.load_extension("plugins.utils")
@@ -31,7 +34,6 @@ bot = RhoBottes()
 async def test_command(interaction: discord.Interaction):
     author = interaction.user
     await interaction.response.send_message(author.name)
-
 
 def main():    
     # rhoBottes = RhoBottes()

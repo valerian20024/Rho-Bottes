@@ -1,13 +1,8 @@
+import csv
 import discord
 from discord.ext import commands
-import csv, requests
-from datetime import datetime
-
-import re
-import os
-import matplotlib.colors as colors
-import random
 import numpy as np
+import random
 
 class RandomCog(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
