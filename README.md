@@ -25,7 +25,8 @@ A review of all the commands the bot currently supports. Hopefully this list is 
 ### Development
 
 Just like any Discord bot, you will need a token from [Discord](https://discord.com/developers/) to be able to use it. You will also need a container solution such as [Docker](https://www.docker.com/).
-Put a `.env` file in the root folder with the `TOKEN` value equal to your token.
+Check out the .env.example file provided and fill in the required environment variable.
+You will need a GUILD_ID (that is, your Discord server) and a TOKEN (given to you from your Discord developer account).
 
 Then simply use the following to build the image:
 
@@ -62,4 +63,10 @@ Stopping / restarting it:
 
 - Deployment: for now it's forced to use SIGKILL to stop it for some reason. Will investigate on that and on the start/run mecanisms. Will also need to refine the podman commands to have a read name for the container and better understand the flow. 
 
+- Check the Pylance type annotations errors with optionals.
 
+- Rework the code.
+
+- Might be worth to try and update the libs in requirements.
+
+- Fix the matplotlib error when launching.
